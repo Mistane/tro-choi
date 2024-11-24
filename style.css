@@ -17,10 +17,12 @@ body{
 }
 
 
+
 .row__ans{
     display: flex;
     position: relative;
-    width: auto;
+    /* width: auto; */
+    
 }
 
 .row__box{
@@ -66,6 +68,7 @@ body{
 
 .row1{
     transform: translateX(30%);
+    /* width: 500px; */
 }
 
 .row2{
@@ -103,12 +106,41 @@ body{
     box-shadow: 1px 1px 5px;
 }
 
+@keyframes pop-up-fade {
+    0% {
+        top: 0px;          
+        opacity: 0;         
+    }
+    70% {
+        top: -100px;             
+        opacity: 1;         
+    }
+    100% {
+        top: -100px;             
+        opacity: 0;         
+    }
+}
+
 .answer__msg{
     position: absolute;
-    top: -80px;
-    left: 45%;
+    top: -100px;
+    left: 40%;
     font-size: 30px;
+    
 }
+
+.answer__msg.valid{
+    color: green;
+    animation: pop-up-fade 1.5s ease-out;
+    opacity: 0;
+}
+
+.answer__msg.error{
+    color: red;
+    animation: pop-up-fade 1.5s ease-out;
+    opacity: 0;
+}
+
 .answer__hint{
     text-align: center;
     font-size: 2.2rem;

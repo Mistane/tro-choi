@@ -74,6 +74,18 @@ function change(string) {
   return arr;
 }
 
+const errorMessage = ["Vấn đề kĩ năng", "Quá kém", "Quá yếu"];
+const validMessage = ["Noice", "10 điểm", "sugoi", "ok bố hết ý tưởng"];
+function printMSG(number){
+  if(number === 1){
+    let random = Math.floor(Math.random() * errorMessage.length);
+    return errorMessage[random];
+  }else if(number === 2){
+    let random = Math.floor(Math.random() * validMessage.length);
+    return validMessage[random];
+  }
+}
+
 const panel = document.querySelector(".button-container");
 const row__answer = document.querySelectorAll(".row__ans");
 let panelSelected = false;
@@ -107,16 +119,21 @@ row__answer.forEach((row) => {
 
     function handleSubmit() {
       const answer = inputField.value;
+      if(answer == "") return;
       console.log(answer);
       console.log(answer === tmp);
       if (answer == tmp) {
-
-        answer__msg.innerHTML = "Gioi";
+        answer__msg.classList.remove("error");
+        answer__msg.classList.add("valid");
+        answer__msg.innerHTML = printMSG(2);
         check.classList.add("active");
+        
         panelSelected = false;
       } else{
-        answer__msg.innerHTML = "Kem";
-        // row.classList.add("fail");
+        answer__msg.classList.remove("valid");
+        answer__msg.classList.add("error");
+        answer__msg.innerHTML = printMSG(1);
+        
       }
         
       inputField.value = "";
